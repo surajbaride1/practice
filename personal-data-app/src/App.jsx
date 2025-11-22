@@ -6,6 +6,7 @@ import Education from './pages/Education';
 import Experience from './pages/Experience';
 import Skills from './pages/Skills';
 import Documents from './pages/Documents';
+import Images from './pages/Images';
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/experience" element={<Experience />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/documents" element={<Documents />} />
+          <Route path="/images" element={<Images />} />
         </Routes>
       </div>
     </Router>

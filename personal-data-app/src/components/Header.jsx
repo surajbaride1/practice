@@ -33,6 +33,9 @@ function Header() {
           <Link to="/documents" className={`nav-link ${isActive('/documents')}`}>
             Documents
           </Link>
+          <Link to="/images" className={`nav-link ${isActive('/images')}`}>
+            Images
+          </Link>
         </nav>
       </div>
     </header>
