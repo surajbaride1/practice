@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './DataForm.css';
+import { STRINGS } from '../helpers/strings';
 
 function Experience() {
   const [experiences, setExperiences] = useState([]);
@@ -41,7 +42,7 @@ function Experience() {
       current: false,
       description: ''
     });
-    alert('Work experience added successfully!');
+    alert(STRINGS.experience.alerts.added);
   };
 
   const handleDelete = (id) => {
@@ -53,11 +54,11 @@ function Experience() {
   return (
     <div className="page-container">
       <div className="form-container">
-        <h2>Work Experience</h2>
+        <h2>{STRINGS.experience.title}</h2>
         <form onSubmit={handleAdd}>
           <div className="form-row">
             <div className="form-group">
-              <label>Company</label>
+              <label>{STRINGS.experience.labels.company}</label>
               <input
                 type="text"
                 name="company"
@@ -67,7 +68,7 @@ function Experience() {
               />
             </div>
             <div className="form-group">
-              <label>Position</label>
+              <label>{STRINGS.experience.labels.position}</label>
               <input
                 type="text"
                 name="position"
@@ -80,7 +81,7 @@ function Experience() {
 
           <div className="form-row">
             <div className="form-group">
-              <label>Start Date</label>
+              <label>{STRINGS.experience.labels.startDate}</label>
               <input
                 type="date"
                 name="startDate"
@@ -89,7 +90,7 @@ function Experience() {
               />
             </div>
             <div className="form-group">
-              <label>End Date</label>
+              <label>{STRINGS.experience.labels.endDate}</label>
               <input
                 type="date"
                 name="endDate"
@@ -108,32 +109,36 @@ function Experience() {
                 checked={formData.current}
                 onChange={handleChange}
               />
-              Currently working here
+              {STRINGS.experience.labels.currentCheckbox}
             </label>
           </div>
 
           <div className="form-group">
-            <label>Description</label>
+            <label>{STRINGS.experience.labels.description}</label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
               rows="4"
-              placeholder="Describe your responsibilities and achievements..."
+              placeholder={STRINGS.experience.placeholders.description}
             />
           </div>
 
-          <button type="submit" className="submit-btn">Add Experience</button>
+          <button type="submit" className="submit-btn">
+            {STRINGS.experience.addButton}
+          </button>
         </form>
 
         {experiences.length > 0 && (
           <div className="data-list">
-            <h3>Saved Work Experience</h3>
+            <h3>{STRINGS.experience.savedTitle}</h3>
             {experiences.map(exp => (
               <div key={exp.id} className="data-item">
                 <div className="data-item-content">
                   <h4>{exp.position} at {exp.company}</h4>
-                  <p>{exp.startDate} - {exp.current ? 'Present' : exp.endDate}</p>
+                  <p>
+                    {exp.startDate} - {exp.current ? STRINGS.experience.presentLabel : exp.endDate}
+                  </p>
                   {exp.description && <p>{exp.description}</p>}
                 </div>
                 <button

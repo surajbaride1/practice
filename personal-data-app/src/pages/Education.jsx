@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './DataForm.css';
+import { STRINGS } from '../helpers/strings';
 
 function Education() {
   const [educations, setEducations] = useState([]);
@@ -43,7 +44,7 @@ function Education() {
       gpa: '',
       description: ''
     });
-    alert('Education added successfully!');
+    alert(STRINGS.education.alerts.added);
   };
 
   const handleDelete = (id) => {
@@ -55,10 +56,10 @@ function Education() {
   return (
     <div className="page-container">
       <div className="form-container">
-        <h2>Education</h2>
+        <h2>{STRINGS.education.title}</h2>
         <form onSubmit={handleAdd}>
           <div className="form-group">
-            <label>Institution</label>
+            <label>{STRINGS.education.labels.institution}</label>
             <input
               type="text"
               name="institution"
@@ -70,30 +71,30 @@ function Education() {
 
           <div className="form-row">
             <div className="form-group">
-              <label>Degree</label>
+              <label>{STRINGS.education.labels.degree}</label>
               <input
                 type="text"
                 name="degree"
                 value={formData.degree}
                 onChange={handleChange}
-                placeholder="e.g., Bachelor's, Master's"
+                placeholder={STRINGS.education.placeholders.degree}
               />
             </div>
             <div className="form-group">
-              <label>Field of Study</label>
+              <label>{STRINGS.education.labels.fieldOfStudy}</label>
               <input
                 type="text"
                 name="field"
                 value={formData.field}
                 onChange={handleChange}
-                placeholder="e.g., Computer Science"
+                placeholder={STRINGS.education.placeholders.field}
               />
             </div>
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label>Start Date</label>
+              <label>{STRINGS.education.labels.startDate}</label>
               <input
                 type="date"
                 name="startDate"
@@ -102,7 +103,7 @@ function Education() {
               />
             </div>
             <div className="form-group">
-              <label>End Date</label>
+              <label>{STRINGS.education.labels.endDate}</label>
               <input
                 type="date"
                 name="endDate"
@@ -113,33 +114,35 @@ function Education() {
           </div>
 
           <div className="form-group">
-            <label>GPA / Grade</label>
+            <label>{STRINGS.education.labels.gpa}</label>
             <input
               type="text"
               name="gpa"
               value={formData.gpa}
               onChange={handleChange}
-              placeholder="e.g., 3.8/4.0"
+              placeholder={STRINGS.education.placeholders.gpa}
             />
           </div>
 
           <div className="form-group">
-            <label>Description</label>
+            <label>{STRINGS.education.labels.description}</label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
               rows="3"
-              placeholder="Additional details..."
+              placeholder={STRINGS.education.placeholders.description}
             />
           </div>
 
-          <button type="submit" className="submit-btn">Add Education</button>
+          <button type="submit" className="submit-btn">
+            {STRINGS.education.addButton}
+          </button>
         </form>
 
         {educations.length > 0 && (
           <div className="data-list">
-            <h3>Saved Education</h3>
+            <h3>{STRINGS.education.savedTitle}</h3>
             {educations.map(edu => (
               <div key={edu.id} className="data-item">
                 <div className="data-item-content">

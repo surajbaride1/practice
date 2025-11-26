@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './DataForm.css';
+import { STRINGS } from '../helpers/strings';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -31,17 +32,17 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem('contactData', JSON.stringify(formData));
-    alert('Contact information saved successfully!');
+    alert(STRINGS.contact.alerts.saved);
   };
 
   return (
     <div className="page-container">
       <div className="form-container">
-        <h2>Contact Information</h2>
+        <h2>{STRINGS.contact.title}</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
-              <label>Email</label>
+              <label>{STRINGS.contact.labels.email}</label>
               <input
                 type="email"
                 name="email"
@@ -51,7 +52,7 @@ function Contact() {
               />
             </div>
             <div className="form-group">
-              <label>Phone</label>
+              <label>{STRINGS.contact.labels.phone}</label>
               <input
                 type="tel"
                 name="phone"
@@ -62,7 +63,7 @@ function Contact() {
           </div>
 
           <div className="form-group">
-            <label>Mobile</label>
+            <label>{STRINGS.contact.labels.mobile}</label>
             <input
               type="tel"
               name="mobile"
@@ -72,63 +73,65 @@ function Contact() {
           </div>
 
           <div className="form-group">
-            <label>Website</label>
+            <label>{STRINGS.contact.labels.website}</label>
             <input
               type="url"
               name="website"
               value={formData.website}
               onChange={handleChange}
-              placeholder="https://"
+              placeholder={STRINGS.contact.placeholders.website}
             />
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label>LinkedIn</label>
+              <label>{STRINGS.contact.labels.linkedin}</label>
               <input
                 type="url"
                 name="linkedin"
                 value={formData.linkedin}
                 onChange={handleChange}
-                placeholder="https://linkedin.com/in/..."
+              placeholder={STRINGS.contact.placeholders.linkedin}
               />
             </div>
             <div className="form-group">
-              <label>GitHub</label>
+              <label>{STRINGS.contact.labels.github}</label>
               <input
                 type="url"
                 name="github"
                 value={formData.github}
                 onChange={handleChange}
-                placeholder="https://github.com/..."
+              placeholder={STRINGS.contact.placeholders.github}
               />
             </div>
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label>Twitter</label>
+              <label>{STRINGS.contact.labels.twitter}</label>
               <input
                 type="url"
                 name="twitter"
                 value={formData.twitter}
                 onChange={handleChange}
-                placeholder="https://twitter.com/..."
+              placeholder={STRINGS.contact.placeholders.twitter}
               />
             </div>
             <div className="form-group">
-              <label>Facebook</label>
+              <label>{STRINGS.contact.labels.facebook}</label>
               <input
                 type="url"
                 name="facebook"
                 value={formData.facebook}
                 onChange={handleChange}
-                placeholder="https://facebook.com/..."
+              placeholder={STRINGS.contact.placeholders.facebook}
               />
             </div>
           </div>
 
-          <button type="submit" className="submit-btn">Save Contact Info</button>
+          <button type="submit" className="submit-btn">
+            {STRINGS.contact.saveButton}
+          </button>
         </form>
       </div>
     </div>

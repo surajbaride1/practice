@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import './DataForm.css';
+import { STRINGS } from '../helpers/strings';
+import { COLORS } from '../helpers/colors';
+import { SIZES } from '../helpers/sizes';
 
 function Images() {
   const [images, setImages] = useState([]);
@@ -16,7 +19,7 @@ function Images() {
     const file = e.target.files[0];
     if (file) {
       if (!file.type.startsWith('image/')) {
-        alert('Please select an image file');
+        alert(STRINGS.alerts.selectImageFile);
         return;
       }
 
@@ -33,48 +36,48 @@ function Images() {
         localStorage.setItem('storedImages', JSON.stringify(updatedImages));
         setImageName('');
         e.target.value = ''; // Reset file input
-        alert('Image saved successfully!');
+        alert(STRINGS.alerts.imageSaved);
       };
       reader.readAsDataURL(file);
     }
   };
 
   const handleDelete = (id) => {
-    if (window.confirm('Are you sure you want to delete this image?')) {
+    if (window.confirm(STRINGS.alerts.confirmDeleteImage)) {
       const updatedImages = images.filter(img => img.id !== id);
       setImages(updatedImages);
       localStorage.setItem('storedImages', JSON.stringify(updatedImages));
-      alert('Image deleted successfully!');
+      alert(STRINGS.alerts.imageDeleted);
     }
   };
 
   return (
     <div className="page-container">
       <div className="form-container">
-        <h2>Image Storage</h2>
+        <h2>{STRINGS.images.title}</h2>
         
         <div className="form-group">
-          <label>Image Name (Optional)</label>
+          <label>{STRINGS.images.nameLabel}</label>
           <input
             type="text"
             value={imageName}
             onChange={(e) => setImageName(e.target.value)}
-            placeholder="Enter a name for your image"
+            placeholder={STRINGS.images.namePlaceholder}
           />
         </div>
 
         <div className="form-group">
-          <label>Upload Image</label>
+          <label>{STRINGS.images.uploadLabel}</label>
           <input
             type="file"
             accept="image/*"
             onChange={handleFileChange}
             style={{
               width: '100%',
-              padding: '0.75rem',
-              border: '2px solid #e0e0e0',
-              borderRadius: '5px',
-              fontSize: '1rem',
+              padding: SIZES.inputPadding,
+              border: `2px solid ${COLORS.border}`,
+              borderRadius: SIZES.borderRadius,
+              fontSize: SIZES.fontSizeBase,
               cursor: 'pointer'
             }}
           />
@@ -106,13 +109,13 @@ function Images() {
         )}
 
         {images.length === 0 && (
-          <div style={{ 
-            textAlign: 'center', 
-            padding: '3rem', 
-            color: '#666',
+          <div style={{
+            textAlign: 'center',
+            padding: SIZES.emptyStatePadding,
+            color: COLORS.textMuted,
             fontStyle: 'italic'
           }}>
-            No images stored yet. Upload an image to get started!
+            {STRINGS.images.emptyState}
           </div>
         )}
       </div>

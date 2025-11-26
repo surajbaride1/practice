@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './DataForm.css';
+import { STRINGS } from '../helpers/strings';
 
 function Profile() {
   const [formData, setFormData] = useState({
@@ -30,17 +31,17 @@ function Profile() {
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem('profileData', JSON.stringify(formData));
-    alert('Profile data saved successfully!');
+    alert(STRINGS.profile.alerts.saved);
   };
 
   return (
     <div className="page-container">
       <div className="form-container">
-        <h2>Personal Profile</h2>
+        <h2>{STRINGS.profile.title}</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
-              <label>First Name</label>
+              <label>{STRINGS.profile.labels.firstName}</label>
               <input
                 type="text"
                 name="firstName"
@@ -50,7 +51,7 @@ function Profile() {
               />
             </div>
             <div className="form-group">
-              <label>Last Name</label>
+              <label>{STRINGS.profile.labels.lastName}</label>
               <input
                 type="text"
                 name="lastName"
@@ -63,7 +64,7 @@ function Profile() {
 
           <div className="form-row">
             <div className="form-group">
-              <label>Date of Birth</label>
+              <label>{STRINGS.profile.labels.dateOfBirth}</label>
               <input
                 type="date"
                 name="dateOfBirth"
@@ -72,22 +73,22 @@ function Profile() {
               />
             </div>
             <div className="form-group">
-              <label>Gender</label>
+              <label>{STRINGS.profile.labels.gender}</label>
               <select
                 name="gender"
                 value={formData.gender}
                 onChange={handleChange}
               >
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
+                <option value="">{STRINGS.profile.options.gender.select}</option>
+                <option value="Male">{STRINGS.profile.options.gender.male}</option>
+                <option value="Female">{STRINGS.profile.options.gender.female}</option>
+                <option value="Other">{STRINGS.profile.options.gender.other}</option>
               </select>
             </div>
           </div>
 
           <div className="form-group">
-            <label>Nationality</label>
+            <label>{STRINGS.profile.labels.nationality}</label>
             <input
               type="text"
               name="nationality"
@@ -97,7 +98,7 @@ function Profile() {
           </div>
 
           <div className="form-group">
-            <label>Address</label>
+            <label>{STRINGS.profile.labels.address}</label>
             <textarea
               name="address"
               value={formData.address}
@@ -107,17 +108,19 @@ function Profile() {
           </div>
 
           <div className="form-group">
-            <label>Bio</label>
+            <label>{STRINGS.profile.labels.bio}</label>
             <textarea
               name="bio"
               value={formData.bio}
               onChange={handleChange}
               rows="4"
-              placeholder="Tell us about yourself..."
+              placeholder={STRINGS.profile.placeholders.bio}
             />
           </div>
 
-          <button type="submit" className="submit-btn">Save Profile</button>
+          <button type="submit" className="submit-btn">
+            {STRINGS.profile.saveButton}
+          </button>
         </form>
       </div>
     </div>
